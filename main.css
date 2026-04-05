@@ -1,34 +1,37 @@
-/* ESTRUTURA GERAL */
+/* =============================================
+ESTRUTURA E RESET
+   ============================================= */
 body {
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
 }
 
-.hero, 
-.services-and-features, 
-.services-page-content, 
-.contact-section {
-    flex: 1 0 auto;
-}
+/* Previne que imagens e elementos largos quebrem o layout no celular */
+* { box-sizing: border-box; }
 
-/* HEADER */
+/* =============================================
+. HEADER (FIXO)
+   ============================================= */
 header {
     background-color: #333;
     color: white;
-    padding: 15px 20px;
+    padding: 15px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     position: sticky;
     top: 0;
     z-index: 1000;
 }
 
 .logo {
-    font-size: 1.8em;
+    font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -39,245 +42,157 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-}
-
-nav ul li {
-    margin-left: 20px;
+    gap: 20px;
 }
 
 nav ul li a {
     text-decoration: none;
     color: white;
-    font-size: 1.1em;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    transition: 0.3s;
 }
 
-nav ul li a:hover {
-    color: #ffd700;
-}
+nav ul li a:hover { color: #ffd700; }
 
-/* SESSÃO HERO */
-.hero {
-    height: 90vh; 
+/* =============================================
+ SEÇÃO HERO (HOME E SERVIÇOS)
+   ============================================= */
+.hero, .page-hero {
+    min-height: 60vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    background: url('fotos/controlAr.jpg') no-repeat center center/cover;
     position: relative;
-    color: white; 
+    padding: 40px 20px;
+}
+
+.hero {
+    background: url('fotos/controlAr.jpg') no-repeat center center/cover;
+    color: white;
 }
 
 .hero::before {
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.45); 
-    z-index: 1; 
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
-.hero-content {
+.hero-content, .page-hero h1 {
+    position: relative;
+    z-index: 2;
     max-width: 800px;
-    padding: 20px;
-    z-index: 2; 
 }
 
-.hero-content h1 {
-    font-size: 3.5em;
-    margin-bottom: 15px;
-    line-height: 1.2;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+.hero-content h1 { font-size: 3rem; margin-bottom: 20px; }
+.page-hero { background-color: #f0f8ff; }
+.page-hero h1 { color: #3958d5; font-size: 2.5rem; }
 
-.hero-content p {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-}
+/* =============================================
+ CARDS E DIFERENCIAIS (HOME)
+   ============================================= */
+.services-and-features { padding: 60px 5%; background-color: #f9f9f9; text-align: center; }
 
-.cta-button {
-    display: inline-block;
-    background-color: #00bcd4;
-    color: white;
-    padding: 15px 35px;
-    text-decoration: none;
-    font-size: 1.2em;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.cta-button:hover {
-    background-color: #0097a7;
-    transform: translateY(-2px);
-}
-
-/* SERVIÇOS E DIFERENCIAIS */
-.services-and-features {
-    padding: 60px 20px;
-    background-color: #f9f9f9;
-    text-align: center;
-}
-
-.services-and-features h2 {
-    font-size: 2.2em;
-    color: #333;
-    margin-bottom: 40px;
-}
-
-.service-cards {
+.service-cards, .feature-items {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
 }
 
-.card {
-    background-color: white;
+.card, .feature {
+    background: white;
     padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    flex-basis: 30%;
-    transition: transform 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    flex: 1 1 300px;
+    max-width: 350px;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-}
+.card i, .feature i { font-size: 3rem; display: block; margin-bottom: 15px; }
 
-.card h3 {
-    color: #00bcd4;
-    margin-top: 15px;
-    font-size: 1.3em;
-}
-
-.card i {
-    font-size: 3em;
-    display: block;
-    margin-bottom: 10px;
-}
-
-.section-divider {
-    border: 0;
-    height: 1px;
-    background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.1), rgba(0,0,0,0));
-    margin: 40px 0;
-}
-
-.feature-items {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px;
-}
-
-.feature { flex-basis: 30%; }
-
-.feature i {
-    font-size: 2.5em;
-    color: #ffd700;
-    margin-bottom: 10px;
-    display: block;
-}
-
-/* SERVIÇOS */
-.services-page-content {
-    padding-top: 80px; 
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
-.page-hero {
-    text-align: center;
-    padding: 60px 20px;
-    background-color: #f0f8ff;
-}
+/* =============================================
+    DETALHES DE SERVIÇOS (PÁGINA SERVIÇOS)
+   ============================================= */
+.services-page-content { padding: 40px 5%; }
 
 .service-detail {
     display: flex;
     align-items: center;
-    padding: 40px;
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    gap: 40px;
+    margin-bottom: 50px;
+    padding: 30px;
+    border-radius: 15px;
 }
 
-.odd-section { background-color: #fff; flex-direction: row; }
-.even-section { background-color: #f9f9f9; flex-direction: row-reverse; }
+.odd-section { background-color: #fff; }
+.even-section { background-color: #f1f4ff; flex-direction: row-reverse; }
 
-.service-detail ul { list-style: none; padding: 0; }
-.service-detail ul li { padding: 5px 0 5px 25px; position: relative; }
-.service-detail ul li::before { content: '✓'; color: #28a745; position: absolute; left: 0; font-weight: bold; }
+.service-text { flex: 1; }
+.service-text h2 { color: #3958d5; }
+.service-text ul { list-style: none; padding: 0; }
+.service-text li { padding: 8px 0 8px 30px; position: relative; }
+.service-text li::before { content: '✓'; color: #28a745; position: absolute; left: 0; font-weight: bold; }
 
-/* SEÇÃO DE CONTATO */
-.contact-section {
-    padding: 80px 20px;
-    background-color: #3958d5;
-    color: white;
-    text-align: center;
-}
+/* =============================================
+   CONTATO
+   ============================================= */
+.contact-section { padding: 60px 5%; background-color: #3958d5; color: white; text-align: center; }
 
 .contact-grid {
     display: flex;
+    justify-content: center;
     gap: 40px;
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: left;
+    max-width: 900px;
+    margin: 40px auto 0;
 }
-
-.contact-form {
-    flex: 2;
-    background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    color: #333;
-}
-
-.form-group { margin-bottom: 15px; }
-
-.submit-button {
-    width: 100%;
-    background-color: #00bcd4;
-    color: white;
-    border: none;
-    padding: 12px;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-.direct-contact { flex: 1; }
 
 .contact-info {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    background: rgba(255,255,255,0.1);
+    padding: 30px;
+    border-radius: 15px;
+    flex: 1;
+    min-width: 250px;
 }
 
+.whatsapp-link { color: #ffd700; font-weight: bold; text-decoration: none; font-size: 1.2rem; }
 
-.whatsapp-link {
-    color: #ffd700 !important;
-    text-decoration: underline !important;
-    font-weight: bold;
-}
-
-/* RODAPÉ */
+/* =============================================
+    RODAPÉ
+   ============================================= */
 footer {
     background-color: #222;
     color: #ccc;
-    padding: 20px 0;
+    padding: 30px;
     text-align: center;
-    font-size: 0.9em;
-    width: 100%;
-    margin-top: auto; 
+    margin-top: auto;
 }
 
-/* RESPONSIVIDADE */
+/* =============================================
+   RESPONSIVIDADE (MOBILE)
+   ============================================= */
 @media (max-width: 768px) {
-    .contact-grid, .service-cards, .feature-items, .service-detail {
+    header {
         flex-direction: column;
+        text-align: center;
     }
-    .hero-content h1 { font-size: 2.5em; }
+
+    nav { margin-top: 15px; }
+    nav ul { gap: 10px; }
+
+    .hero-content h1 { font-size: 2rem; }
+    
+    .service-detail, .even-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .service-text li { text-align: left; }
+
+    .contact-grid { flex-direction: column; }
+    
+    .contact-info { width: 100%; }
 }
